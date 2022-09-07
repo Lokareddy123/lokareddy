@@ -14,7 +14,9 @@ pipeline{
             }    
         }
         stage("Dev Tomcat Deploy"){
-         
+            steps{
+                echo "hekko worlf"
+            }    
         }
     }
 }  
