@@ -1,25 +1,22 @@
-@Library("hellolibs") _
 pipeline{
     agent any
     stages{
-        stage("Git Checkout"){
-            steps{
-                git credentialsId: 'github', url: 'https://github.com/Lokareddy123/lokareddy.git'
-            }    
-            
-        }
         stage("Maven Build"){
+            when {
+                branch "develop"
+            }
             steps{
-                sh 'mvn clean package'
-            }    
+                sh "mvn package"
+            }
         }
-        stage("Dev Tomcat Deploy"){
+        stage("Deploy To production"){
+            when {
+                branch "master"
+            }
             steps{
-                tomcatDeploy("172.31.81.20","ec2-user","tomcat-dev")
-            }    
+                echo "deploy to master server...."
+            }
         }
     }
-}  
-  
-  
+}
       
