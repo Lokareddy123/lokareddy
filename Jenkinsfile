@@ -9,6 +9,14 @@ pipeline{
                 sh "mvn package"
             }
         }
+        stage("Deploy to dev"){
+            when {
+                branch "develop"
+            }
+            steps{
+                echo "deploy to development server...."
+            }
+        }
         stage("Deploy To production"){
             when {
                 branch "master"
