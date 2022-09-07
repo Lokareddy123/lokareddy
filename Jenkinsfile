@@ -1,20 +1,25 @@
-@Library("mylibs") _
-pipeline {
-  agent any
-  tools {
-    maven 'maven2'
-  }
-  stages{
-    stage("Maven Build"){
-      steps{
-        sh "mvn clean package"
-      }
+@Library("hellolibs") _
+pipeline{
+    agent any
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git credentialsId: 'github', url: 'https://github.com/Lokareddy123/lokareddy.git'
+            }    
+            
+        }
+        stage("Maven Build"){
+            steps{
+                sh 'mvn clean package'
+            }    
+        }
+        stage("Dev Tomcat Deploy"){
+            steps{
+                tomcatDeploy("44.208.28.129","ec2-user","tomcat-dev")
+            }
+        }
     }
-    stage("Deploy To Dev"){
-      steps{
-        tomcatDeploy("tomcat-dev","ec2-user",["172.31.13.89","172.31.13.89"])
-      }
-    }
-  }
-}
-// testing github hook trigger
+}  
+  
+  
+      
