@@ -15,7 +15,7 @@ pipeline{
         }
         stage("Dev Tomcat Deploy"){
             steps{
-                tomcatDeploy("44.208.28.129","ec2-user","tomcat-dev")
+               
             }
         }
     }
