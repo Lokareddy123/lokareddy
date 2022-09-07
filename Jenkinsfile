@@ -15,7 +15,7 @@ pipeline{
         }
         stage("Dev Tomcat Deploy"){
             steps{
-                echo "hekko worlf"
+                tomcatDeploy("172.31.81.20","ec2-user","tomcat-dev")
             }    
         }
     }
