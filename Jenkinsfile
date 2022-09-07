@@ -14,9 +14,7 @@ pipeline{
             }    
         }
         stage("Dev Tomcat Deploy"){
-            steps{
-               
-            }
+         
         }
     }
 }  
